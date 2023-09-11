@@ -1,0 +1,23 @@
+<div class="card h-100">
+    <img [src]="product.thumbnail" class="card-img-top" [alt]="product.title" />
+    <div class="card-body">
+      <h5 class="card-title">{{product.title | lowercase}} </h5>
+      <p class="card-text">
+        {{product.description}}
+      </p>
+      <p class="card-text">
+        {{product.price}} $
+      </p>
+      <button class="btn btn-primary" (click)="redirectToDetails(product.id)">Details</button>
+      <div *ngIf="isAdd; then thenBlock else elseBlock"></div>
+      <ng-template #thenBlock>
+          <a class="btn btn-danger ms-2" style="font-size: 16px;" (click)="removeFromCart()">Remove From Cart</a>
+      </ng-template>
+      <ng-template #elseBlock>
+          <a class="btn btn-success ms-2" style="font-size: 16px;" (click)="addToCart()">Add to Cart</a>
+      </ng-template>
+    </div>
+    <div class="card-footer">
+      <small class="text-body-secondary">{{product.createdAt | date : 'MMMM YYYY' }}</small>
+    </div>
+  </div>

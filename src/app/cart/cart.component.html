@@ -1,0 +1,36 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Name</th>
+        <th>Price</th>
+       <!-- <th>After Discount</th> -->
+        <th>Quantity</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cartItem of cart">
+        <td><img [src]="cartItem.item.thumbnail" alt="Product Image" /></td>
+        <td>{{ cartItem.item.title }}</td>
+        <td>${{ cartItem.item.price * getQuantity(cartItem.item)}}</td>
+      <!--  <td><p class="card-text py-2 fw-bold mb-0">${{cartItem.item.price-(cartItem.item.price*(cartItem.item.discountPercentage/100))}}</p></td>-->
+      
+        <td>
+          <button (click)="incrementQuantity(cartItem.item)">+</button>
+          {{ getQuantity(cartItem.item) }}
+          <button (click)="decrementQuantity(cartItem.item)">-</button>
+        </td>
+
+        <td><button class="btn btn-danger" (click)="removeFromCart(cartItem.item)">Remove</button></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr hidden>
+        <td colspan="2"></td>
+        <td><strong>Total:</strong></td>
+       <td><strong>${{ totalPrice }}</strong></td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>

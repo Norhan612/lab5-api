@@ -1,0 +1,7 @@
+<h1>Welcome to products app</h1>
+<h5>Here's some of our products</h5>
+<div class="row row-cols-1 row-cols-md-3 g-4 my-4">
+  <div class="col" *ngFor="let product of products">
+    <app-product-card [product]="product" [cart]="cart" (addCart)="addToCart($event)" (removeCart)="removeFromCart($event)"></app-product-card>
+  </div>
+</div>
